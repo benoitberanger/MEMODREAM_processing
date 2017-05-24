@@ -5,3 +5,5 @@
 !*.m
 !.gitignore
 
+# old scripts
+!old/

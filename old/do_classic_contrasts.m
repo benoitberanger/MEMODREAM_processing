@@ -29,6 +29,7 @@ contrast.names = {
 'sequence - countdown'
 
 }';
+
 contrast.values = {
     [ 1 0 0 ]
     [ 0 1 0 ]
