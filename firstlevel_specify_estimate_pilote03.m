@@ -18,9 +18,9 @@ LINK = {
     
 % SERIE DIR                                STIM FILE NAME
 
-'S03_DualTask_Simple_Start_1'             'DualTask_Simple_MRI_Start_1_SPM.mat$'
-'S05_DualTask_Complex_Start_1'            'DualTask_Complex_MRI_Start_1_SPM.mat$'
-'S07_Training_Start'                      'Training_MRI_Start_1_SPM.mat$'
+% 'S03_DualTask_Simple_Start_1'             'DualTask_Simple_MRI_Start_1_SPM.mat$'
+% 'S05_DualTask_Complex_Start_1'            'DualTask_Complex_MRI_Start_1_SPM.mat$'
+% 'S07_Training_Start'                      'Training_MRI_Start_1_SPM.mat$'
 
 'S11_DualTask_Simple_Pre_1'               'DualTask_Simple_MRI_Pre_1_SPM.mat$'
 'S13_DualTask_Complex_Pre_1'              'DualTask_Complex_MRI_Pre_1_SPM.mat$'
@@ -64,7 +64,7 @@ LINK = {
 'S77_SpeedTest_Post_imag_4'               'SpeedTest_MRI_Post_5_SPM.mat$'
 'S79_DualTask_Simple_Post_imag_4'         'DualTask_Simple_MRI_Post_4_SPM.mat$'
 'S81_DualTask_Complex_Post_imag_4'        'DualTask_Complex_MRI_Post_4_SPM.mat$'
-'S83_Training_end'                        'Training_MRI_End_1_SPM.mat$'
+% 'S83_Training_end'                        'Training_MRI_End_1_SPM.mat$'
 
 };
 
@@ -164,7 +164,7 @@ session_4 = {
     'S77_SpeedTest_Post_imag_4'               'SpeedTest_MRI_Post_5_SPM.mat$'
     'S79_DualTask_Simple_Post_imag_4'         'DualTask_Simple_MRI_Post_4_SPM.mat$'
     'S81_DualTask_Complex_Post_imag_4'        'DualTask_Complex_MRI_Post_4_SPM.mat$'
-    'S83_Training_end'                        'Training_MRI_End_1_SPM.mat$'
+%     'S83_Training_end'                        'Training_MRI_End_1_SPM.mat$'
     };
 
 dfunc_session_4 = examArray.getSeries(session_4(:,1),'name').toJobs;

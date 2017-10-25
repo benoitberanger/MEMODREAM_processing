@@ -1,4 +1,4 @@
-clear all
+clear
 clc
 
 %% Prepare paths and regexp
