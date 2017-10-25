@@ -136,7 +136,7 @@ fm_start=examArray.getSeries('anat_start').addVolumes('^mask_b','mask_brain',1)
 fanat_start=examArray.getSeries('anat_start').getVolumes('^s').toJobs
 fo_start = addprefixtofilenames(fanat_start,'brain_');
 do_fsl_mult(concat_cell(fm_start,fanat_start),fo_start);
-examArray.getSeries('anat_start').addVolumes('^brain_','brain',1)
+examArray.getSeries('anat_start').addVolumes('^brain_','brain_',1)
 
 
 
@@ -148,7 +148,7 @@ fm_end=examArray.getSeries('anat_end').addVolumes('^mask_b','mask_brain',1)
 fanat_end=examArray.getSeries('anat_end').getVolumes('^s').toJobs
 fo_end = addprefixtofilenames(fanat_end,'brain_');
 do_fsl_mult(concat_cell(fm_end,fanat_end),fo_end);
-examArray.getSeries('anat_end').addVolumes('^brain_','brain',1)
+examArray.getSeries('anat_end').addVolumes('^brain_','brain_',1)
 
 
 
@@ -174,7 +174,7 @@ examArray.getSeries('run').addVolumes('^utrf.*nii','utrf',1)
 % fanat = get_subdir_regex_files(anat,'^s.*nii$',1) % raw anat
 % fanat = get_subdir_regex_files(anat,'^ms.*nii$',1) % raw anat + signal bias correction
 % fanat = get_subdir_regex_files(anat,'^brain_s.*nii$',1) % brain mask applied (not perfect, there are holes in the mask)
-fanat = examArray.getSeries('anat_start').getVolumes('^brain').toJobs
+fanat = examArray.getSeries('anat_start').getVolumes('^brain_').toJobs
 
 par.type = 'estimate';
 for nbs=1:length(suj)
@@ -194,4 +194,5 @@ par.smooth = [8 8 8];
 j_smooth=job_smooth(ffonc,par)
 examArray.getSeries(regex_dfonc).addVolumes('^swutrf','swutrf',1)
 
-save('exarr','examArray')
+save('exarr_orig','examArray') % always keep the original
+save('exarr_stim','examArray') % work on this one
