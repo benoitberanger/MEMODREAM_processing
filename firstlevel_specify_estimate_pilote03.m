@@ -72,6 +72,8 @@ for l = 1 : size(LINK,1)
     examArray.getSeries(LINK{l,1},'name').addStim(stimdirs,LINK{l,2},'SPMnod')
 end
 
+save('exarr_stim','examArray') % work on this one
+
 % examArray.explore
 
 
@@ -98,6 +100,7 @@ par.delete_previous=1;
 par.rp = 1; % realignment paramters : movement regressors
 par.run = 1;
 par.display = 0;
+
 
 %% Specify model : prepare list of (run,stimfile)
 
