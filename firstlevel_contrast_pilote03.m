@@ -5,7 +5,7 @@ imgdir   = [ pwd filesep 'img'];
 stimdirs = [ pwd filesep 'stim'];
 load('exarr_stim.mat')
 
-statdir = get_subdir_regex(examArray.toJobs,'stat');
+statdir = get_subdir_regex(examArray.toJob,'stat');
 session_all_dir = get_subdir_regex(statdir,'session');
 fspm = get_subdir_regex_files(session_all_dir,'SPM',1);
 
@@ -28,7 +28,9 @@ tap  = [0 1 rp];
 
 % --- SESSION 1 ---
 
-contrast(1).names = {
+% T-contrast
+
+contrast(1).names_T = {
     
 'Session 1 : Tap-Rest : DT_Simple  : Pre'
 'Session 1 : Tap-Rest : DT_Complex : Pre'
@@ -42,11 +44,11 @@ contrast(1).names = {
 'Session 1 : Tap : Post-Pre : DT_Complex'
 'Session 1 : Tap : Post-Pre : SpeedTest'
 
-'Session 1 : Tap : Pre : DT_Complex-SpeedTest'
+% 'Session 1 : Tap : Pre : DT_Complex-SpeedTest'
 
 }';
 
-contrast(1).values = {
+contrast(1).values_T = {
     
 [ -rest+tap null null null null null ]
 [ null -rest+tap null null null null ]
@@ -59,12 +61,48 @@ contrast(1).values = {
 [ null -tap null null null tap  ]
 [ null null -tap tap  null null ]
 
-[ null tap -tap null null null ]
+% [ null tap -tap null null null ]
+
 
 }';
 
-contrast(1).types = cat(1,repmat({'T'},[1 length(contrast(1).names)]));
+contrast(1).types_T = cat(1,repmat({'T'},[1 length(contrast(1).names_T)]));
 
+% F-contrast
+
+contrast(1).names_F = {
+    
+% 'Session 1 : effect of time'
+% 'Session 1 : effect of task'
+
+% 'Main effect of DualTask'
+% 'Main effect of SpeedTest'
+% 'Main effect of Run'
+
+}';
+
+contrast(1).values_F = {
+    
+% tap null null null null null; 
+% null tap null null null null;
+% null null null null tap null;
+% null null null null null tap;
+
+% [tap  tap  tap -tap -tap -tap;
+% -tap -tap -tap tap tap tap]
+% 
+% [tap null null null -tap null;
+% null tap null null null -tap;
+% null null tap -tap null null]
+
+}';
+
+contrast(1).types_F = cat(1,repmat({'F'},[1 length(contrast(1).names_F)]));
+
+% Combine F and T
+contrast(1).names = [contrast(1).names_T contrast(1).names_F];
+contrast(1).values = [contrast(1).values_T contrast(1).values_F];
+contrast(1).types = [contrast(1).types_T contrast(1).types_F];
 
 % --- SESSION 2 ---
 
@@ -201,14 +239,14 @@ contrast(4).types = cat(1,repmat({'T'},[1 length(contrast(4).names)]));
 %% Estimate contrast
 
 j_contrast_1 = job_first_level_contrast(fspm(1),contrast(1),par);
-j_contrast_2 = job_first_level_contrast(fspm(2),contrast(2),par);
-j_contrast_3 = job_first_level_contrast(fspm(3),contrast(3),par);
-j_contrast_4 = job_first_level_contrast(fspm(4),contrast(4),par);
+% j_contrast_2 = job_first_level_contrast(fspm(2),contrast(2),par);
+% j_contrast_3 = job_first_level_contrast(fspm(3),contrast(3),par);
+% j_contrast_4 = job_first_level_contrast(fspm(4),contrast(4),par);
 
 
 %% Show results
 
-matlabbatch{1}.spm.stats.results.spmmat = fspm(4);
+matlabbatch{1}.spm.stats.results.spmmat = fspm(1);
 matlabbatch{1}.spm.stats.results.conspec.titlestr = '';
 matlabbatch{1}.spm.stats.results.conspec.contrasts = 1;
 matlabbatch{1}.spm.stats.results.conspec.threshdesc = 'FWE';

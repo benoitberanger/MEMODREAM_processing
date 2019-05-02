@@ -5,7 +5,7 @@ imgdir   = [ pwd filesep 'img'];
 stimdirs = [ pwd filesep 'stim'];
 load('exarr_stim.mat')
 
-statdir = get_subdir_regex(examArray.toJobs,'stat');
+statdir = get_subdir_regex(examArray.toJob,'stat');
 session_all_dir = get_subdir_regex(statdir,'session');
 
 par.delete_previous=1;
